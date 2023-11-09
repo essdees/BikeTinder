@@ -1,9 +1,13 @@
-import { SafeAreaView, Text, View } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
+import { SafeAreaView, Text, View, Button } from 'react-native';
 
 import { useTailwind } from 'tailwind-rn';
+import { NavigationConstants } from '../constants/ApplicationEnums';
+import { NavigationType } from '../navigation/Navigation';
 
 const LandingPage = () => {
     const tailwind = useTailwind();
+    const navigation = useNavigation<NavigationType>();
 
     return (
         <SafeAreaView style={tailwind('h-full')}>
@@ -13,6 +17,12 @@ const LandingPage = () => {
                         Hello Tailwind
                     </Text>
                 </View>
+                <Button
+                    title="Go to Chat Screen"
+                    onPress={() =>
+                        navigation.navigate(NavigationConstants.CHAT_SCREEN)
+                    }
+                />
             </View>
         </SafeAreaView>
     );
